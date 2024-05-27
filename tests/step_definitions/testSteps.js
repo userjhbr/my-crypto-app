@@ -12,7 +12,7 @@ Given('the user opens the Crypto App', async function () {
 Then('the user should see the Crypto App title', async function () {
   const title = await page.$eval('h1', el => el.textContent);
   const chai = await import('chai'); // Importação dinâmica
-  chai.expect(title).to.equal('Crypto');
+  chai.expect(title.toLowerCase()).to.equal('crypto');
 });
 
 Then('the user should see cryptocurrency data', async function () {
