@@ -9,7 +9,7 @@ services:
     volumes:
       - ./my-crypto-app:/app
     ports:
-      - "3001:3000" # Mapeamento da porta do seu aplicativo React
+      - "3002:3001" # Mapeamento da porta do contêiner React para 3002
     command: sh -c "npm install && npm start" # Comando para instalar dependências e iniciar o app
 
   # Serviço para o Redis
