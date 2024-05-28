@@ -12,6 +12,21 @@ services:
       - "3002:3001" # Mapeamento da porta do contêiner React para 3002
     command: sh -c "npm install && npm start" # Comando para instalar dependências e iniciar o app
 
+  # Serviço para o backend Flask
+  sentiment-analysis:
+    build: ./sentiment-analysis
+    container_name: sentiment-analysis
+    volumes:
+      - ./sentiment-analysis:/app
+    ports:
+      - "5000:5000" # Mapeamento da porta do contêiner Flask para 5000
+    environment:
+      - FLASK_ENV=development
+      - MONGO_URI=mongodb://mongodb:27017/sentiment_db
+      - REDDIT_CLIENT_ID=${REDDIT_CLIENT_ID}
+      - REDDIT_CLIENT_SECRET=${REDDIT_CLIENT_SECRET}
+      - REDDIT_USER_AGENT=${REDDIT_USER_AGENT}
+
   # Serviço para o Redis
   redis:
     image: redis:latest
@@ -35,3 +50,11 @@ services:
     environment:
       - SERVICES=s3,sqs,lambda,dynamodb,apigateway,cloudwatch
       - DEFAULT_REGION=us-east-1
+
+
+
+
+
+
+
+
